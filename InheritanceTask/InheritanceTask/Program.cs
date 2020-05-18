@@ -8,70 +8,46 @@ namespace InheritanceTask
         static void Main(string[] args)
         {
 
-            string keyWord = Console.ReadLine();
-            if (keyWord == "basic")
+            string keyword;
+
+            do
             {
-                DocumentProgram program = new DocumentProgram();
-                program.OpenDocument();
-                program.EditDocument();
-                program.SaveDocument();
+                Console.WriteLine("Please enter keyword: ");
+                keyword = Console.ReadLine();
 
-            }
-            else if(keyWord == "pro")
-            {
-                DocumentProgram program = new ProDocumentProgram();
-                program.OpenDocument();
-                program.EditDocument();
-                program.SaveDocument();
-            }
-            else if (keyWord == "expert")
-            {
-                DocumentProgram program = new ExpertDocument();
-                program.OpenDocument();
-                program.EditDocument();
-                program.SaveDocument();
-            }
+                if (keyword == "basic")
+                {
+                    DocumentProgram docProgram = new DocumentProgram();
 
+                    docProgram.OpenDocument();
+                    docProgram.EditDocument();
+                    docProgram.SaveDocument();
+                }
+
+                else if (keyword == "pro")
+                {
+                    DocumentProgram docProgram = new ProDocumentProgram();
+
+                    docProgram.OpenDocument();
+                    docProgram.EditDocument();
+                    docProgram.SaveDocument();
+                }
+
+                else if (keyword == "expert")
+                {
+                    DocumentProgram docProgram = new ExpertDocument();
+
+                    docProgram.OpenDocument();
+                    docProgram.EditDocument();
+                    docProgram.SaveDocument();
+                }
+                else
+                {
+                    Console.WriteLine("It is not correct keyword");
+                }
+            } while (!(keyword == "basic" || keyword == "pro" || keyword == "expert"));
 
         }
     }
-
-    class DocumentProgram
-    {
-        public void OpenDocument()
-        {
-            Console.WriteLine("Document Opened");
-        }
-
-        public virtual void EditDocument()
-        {
-            Console.WriteLine("Can Edit in Pro and Expert versions");
-        }
-
-        public virtual void SaveDocument()
-        {
-            Console.WriteLine("Can Save in Pro and Expert versions");
-        }
-    }
-
-    class ProDocumentProgram : DocumentProgram
-    {
-        public override sealed void EditDocument()
-        {
-            Console.WriteLine("Document Edited");
-        }
-
-        public override void SaveDocument()
-        {
-            Console.WriteLine("Document Saved in doc format, for pdf format buy Expert packet");
-        }
-    }
-
-    class ExpertDocument : ProDocumentProgram
-    {
-        public override void SaveDocument()
-        {
-            Console.WriteLine("Document Saved in pdf format");
-        }
-    }
+ 
 }
